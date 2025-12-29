@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+venv/
+.venv/
+
+# Environment Variables (PENTING untuk AI API Key nanti)
+.env
+
+# Streamlit
+.streamlit/
+
+# IDE
+.vscode/
+.idea/
