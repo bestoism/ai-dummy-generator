@@ -29,7 +29,7 @@ The system follows a **Schema-Based Generation** approach:
 
 1.  **Clone the repository**
     ```bash
-    git clone https://github.com/USERNAME/ai-dummy-generator.git
+    git clone https://github.com/bestoism/ai-dummy-generator.git
     cd ai-dummy-generator
     ```
 
