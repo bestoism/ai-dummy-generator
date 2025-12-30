@@ -18,10 +18,24 @@ def get_schema_from_prompt(user_prompt):
     print(f"🚀 Mengirim prompt ke Gemini (Model: gemini-2.5-flash): {user_prompt}")
     
     system_instruction = """
-    Kamu adalah Data Engineer. Ubah request user menjadi JSON Schema.
+    Kamu adalah Data Engineer Expert. Tugasmu adalah mengubah request user menjadi JSON Schema untuk generator data dummy.
+    
+    ATURAN PENTING:
+    1. Output WAJIB JSON valid.
+    2. Nama kolom (name) WAJIB format snake_case (contoh: 'jenis_kelamin', 'tinggi_badan', 'ipk').
+    3. Tipe data hanya boleh: 'integer', 'float', 'categorical'.
+    4. UNTUK DATA ANGKA (Integer/Float):
+       - Tentukan 'min' dan 'max' yang masuk akal.
+       - JIKA ITU DATA NILAI/SKOR/TINGGI/BERAT: Tambahkan field 'mean' (rata-rata) agar distribusi data terlihat normal (Bell Curve), bukan acak total.
+       - Contoh: Untuk 'nilai_ujian', set min=0, max=100, mean=75.
+    
     Format JSON:
-    {"rows": 100, "columns": [{"name": "col_name", "type": "integer/float/categorical", "min": 0, "max": 100, "values": []}]}
-    Pastikan type hanya boleh: 'integer', 'float', atau 'categorical'.
+    {
+      "rows": 100,
+      "columns": [
+        {"name": "nama_kolom", "type": "...", "min": ..., "max": ..., "mean": ..., "values": [...]}
+      ]
+    }
     """
     
     full_prompt = f"{system_instruction}\n\nUser Request: {user_prompt}"
